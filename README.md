@@ -21,7 +21,7 @@ Hands-on project: MongoDB Atlas Vector Search on a Terraform-provisioned Azure V
 ## Status
 
 Work in progress. Following a phased build:
-- Step 1: Workstation and infrastructure -- WIP
+- Step 1: Workstation and infrastructure
 - Step 2: Atlas cluster and sample data
 - Step 3: Embedding generation
 - Step 4: Vector index and querying
