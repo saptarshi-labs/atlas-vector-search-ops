@@ -1,0 +1,7 @@
+# Copy this file to terraform.tfvars and fill in real values.
+# terraform.tfvars is gitignored.
+
+location       = "centralindia"           # Azure region
+vm_size        = "Standard_B1s"           # VM Size based on the subscription type
+my_ip          = "x.x.x.x/32"             # Laptop public IPv4
+ssh_public_key = "ssh-ed25519 AAAA..."    # contents of ~/.ssh/<key>.pub
