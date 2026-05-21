@@ -1,7 +1,7 @@
 # Project Status — atlas-vector-search-ops
 
-Last updated: 2026-05-11
-Current position: Step 1.5 complete, Step 1.6 next.
+Last updated: 2026-05-21
+Current position: Step 1 complete, Step 2 next.
 
 ## Completed
 
@@ -15,19 +15,19 @@ Step 1.4 — Repo cloned to `E:\projects\atlas-vector-search-ops`. Subfolders cr
 
 Step 1.5 — `az login` complete, default subscription set to `Azure subscription 1`.
 
+Step 1.6 — Terraform configuration written (`main.tf`, `variables.tf`, `outputs.tf`, `terraform.tfvars`). VM provisioned in southindia on `Standard_B2s_v2` after a capacity restriction on `Standard_B1s`. 8 Azure resources created.
+
+Step 1.7 — SSH from laptop to VM working. NSG rule updated after an ISP IP change.
+
+Step 1.8 — Python 3, pip, venv, mongosh, and Atlas CLI installed on the VM.
+
+Step 1.9 — SSH key generated on the VM and registered with GitHub. `~/.ssh/config` added so the non-default-named key is used. Repo cloned to `~/projects/atlas-vector-search-ops` on the VM.
+
+Step 1.10 — Two-machine git workflow verified: laptop and VM both in sync with GitHub.
+
 Step 2.1 — Atlas M0 cluster `vector-search-demo` created on AWS Mumbai (done early during account setup).
 
 ## Pending
-
-Step 1.6 — write Terraform files (`main.tf`, `variables.tf`, `outputs.tf`, `terraform.tfvars`) in `infra/`, then `terraform init` / `plan` / `apply`.
-
-Step 1.7 — SSH from laptop to VM.
-
-Step 1.8 — install Python, mongosh, Atlas CLI on the VM.
-
-Step 1.9 — generate SSH key on the VM, register with GitHub.
-
-Step 1.10 — practice the two-machine git workflow.
 
 Step 2.2 — Atlas network access, database user `vectordemo`.
 
@@ -69,6 +69,13 @@ Step 5.4 — performance experiments (`numCandidates`, filter overhead).
 
 Step 5.5 — commit.
 
-Step 6.1–6.6 — README expansion, runbooks (index lifecycle, embedding lifecycle, cross-machine workflow), pin repo on profile.
+Step 6.1–6.6 — README expansion, runbooks (polish incident notes into RCAs, index/embedding/cross-machine workflow), pin repo on profile.
 
 Cleanup — `terraform destroy` before the Azure free credit window closes.
+
+## Incidents logged
+
+Raw notes in `runbooks/_incident-notes.md` (to be polished into RCAs in Step 6):
+- Incident 01 — Azure SKU capacity restriction (B1s unavailable, switched to B2s_v2 in southindia).
+- Incident 02 — SSH blocked after ISP IP change (NSG /32 rule update).
+- Incident 03 — SSH key not offered to GitHub (non-default key name, fixed with `~/.ssh/config`).
