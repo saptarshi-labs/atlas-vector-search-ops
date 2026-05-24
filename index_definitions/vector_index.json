@@ -1,10 +1,16 @@
 {
-  "fields": [
-    {
-      "type": "vector",
-      "path": "plot_embedding",
-      "numDimensions": 1536,
-      "similarity": "cosine"
-    }
-  ]
+  "database": "sample_mflix",
+  "collectionName": "movies",
+  "name": "plot_vector_index",
+  "type": "vectorSearch",
+  "definition": {
+    "fields": [
+      {
+        "type": "vector",
+        "path": "plot_embedding",
+        "numDimensions": 1536,
+        "similarity": "cosine"
+      }
+    ]
+  }
 }
