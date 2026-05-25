@@ -4,8 +4,6 @@ vector_search.py
 Runs a semantic (vector) search against sample_mflix.movies.
 Embeds a user-supplied query with OpenAI, then finds the movies whose
 plot_embedding is most similar, using Atlas $vectorSearch.
-Search is based on the plot embedding; results display fullplot when
-available, falling back to the short plot otherwise.
 """
 
 import os
@@ -64,20 +62,43 @@ pipeline = [
         "$project": {
             "_id": 0,
             "title": 1,
+            "year": 1,
+            "genres": 1,
+            "runtime": 1,
+            "cast": 1,
+            "imdb.rating": 1,
             "plot": 1,
             "fullplot": 1,
-            "score": {"$meta": "vectorSearchScore"},
         }
     },
 ]
 
-results = movies.aggregate(pipeline)
+results = list(movies.aggregate(pipeline))
 
 # --- Show results ---
-print(f"\nQuery: \"{QUERY_TEXT}\"\n")
-for i, movie in enumerate(results, start=1):
-    description = movie.get("fullplot") or movie.get("plot", "(no plot available)")
-    print(f"{i}. {movie['title']}  (score: {movie['score']:.4f})")
-    print(f"   {description}\n")
+print(f"\n{'=' * 70}")
+print(f'  Search results for: "{QUERY_TEXT}"')
+print(f"{'=' * 70}\n")
+
+if not results:
+    print("  No matching movies found.\n")
+else:
+    for i, movie in enumerate(results, start=1):
+        title   = movie.get("title", "Untitled")
+        year    = movie.get("year", "—")
+
+        runtime = movie.get("runtime")
+        runtime = f"{runtime} min" if runtime else "—"
+
+        genres  = ", ".join(movie.get("genres", [])) or "—"
+        rating  = movie.get("imdb", {}).get("rating") or "—"
+        cast    = ", ".join(movie.get("cast", [])[:4]) or "—"
+        desc    = movie.get("fullplot") or movie.get("plot", "(no description available)")
+
+        print(f"  {i}. {title}  ({year})")
+        print(f"     {genres}  |  {runtime}  |  IMDb: {rating}")
+        print(f"     Cast: {cast}")
+        print(f"     {desc}")
+        print(f"  {'-' * 66}\n")
 
 mongo_client.close()
