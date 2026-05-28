@@ -25,22 +25,18 @@ resource "mongodbatlas_advanced_cluster" "m10" {
 
   mongo_db_major_version = "8.1"
 
-  replication_specs = [
-    {
-      region_configs = [
-        {
-          provider_name = "AWS"
-          region_name   = "AP_SOUTH_1"
-          priority      = 7
+  replication_specs {
+    region_configs {
+      provider_name = "AWS"
+      region_name   = "AP_SOUTH_1"
+      priority      = 7
 
-          electable_specs = {
-            instance_size = "M10"
-            node_count    = 3
-          }
-        }
-      ]
+      electable_specs {
+        instance_size = "M10"
+        node_count    = 3
+      }
     }
-  ]
+  }
 }
 
 # Database user for connecting to the cluster.
