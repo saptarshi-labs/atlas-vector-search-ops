@@ -5,19 +5,6 @@ Hybrid search against sample_mflix.movies: combines semantic vector
 search ($vectorSearch on plot_embedding) with full-text keyword search
 ($search on title and plot), fused with the native $rankFusion stage.
 Title matches are boosted over plot matches in the text pipeline.
-
-VERSION REQUIREMENT — IMPORTANT:
-$rankFusion with a $vectorSearch sub-pipeline requires MongoDB 8.1+.
-The M0 free-tier cluster used for the core project runs 8.0.x, and the
-MongoDB version of an M0 cluster cannot be manually selected (M0 is
-auto-managed by Atlas). On 8.0.x this script runs without error but the
-fusion does not genuinely combine the two pipelines — hybrid results
-collapse to the vector results alone.
-
-This script is therefore validated during the temporary M10 upgrade in
-the scaling phase (Step 7), where the cluster runs MongoDB 8.1+.
-A version-independent alternative is manual Reciprocal Rank Fusion
-(see project documentation).
 """
 
 import os
