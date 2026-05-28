@@ -1,0 +1,6 @@
+# Never commit real variable values or Terraform state.
+terraform.tfvars
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl

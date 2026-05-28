@@ -1,0 +1,12 @@
+# Copy this file to terraform.tfvars and fill in real values.
+
+atlas_public_key  = "your-atlas-api-public-key"
+atlas_private_key = "your-atlas-api-private-key"
+atlas_project_id  = "your-atlas-project-id"
+
+cluster_name = "vector-search-scaling"
+
+db_username = "vectordemo"
+db_password = "your-strong-password"
+
+allowed_ip = "your-vm-public-ip"
