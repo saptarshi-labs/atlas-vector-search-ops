@@ -43,3 +43,6 @@ desktop.ini
 .idea/
 *.swp
 *.swo
+
+# Generated synthetic data (reproducible by running generate_synthetic_movies.py)
+synthetic_movies.jsonl
